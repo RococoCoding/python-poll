@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <style>
     body {
@@ -19,6 +19,7 @@
 
     input[type="radio"] {
         margin-right: 5px;
+        margin-bottom: 8px;
     }
 
     label {
@@ -39,6 +40,20 @@
         border: none;
         cursor: pointer;
     }
+
+     .button {
+        background-color: #007BFF;
+        color: #FFF;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 1rem;
+    }
+
+    .button:hover {
+        background-color: #0056b3;
+    }
 </style>
 
     <title>Vote</title>
@@ -47,13 +62,16 @@
     <h1>Vote on Poll ID: {{ poll_id }}</h1>
     <form action="/vote/{{ poll_id }}" method="POST">
         {% for option in options %}
-            <input type="radio" id="option_{{ option[0] }}" name="option_id" value="{{ option[0] }}" required>
-            <label for="option_{{ option[0] }}">{{ option[1] }}</label><br>
+              <input type="radio" id="option_{{ option[0] }}" name="option_id" value="{{ option[0] }}" required>
+              <label for="option_{{ option[0] }}" style="display: inline;">{{ option[1] }}</label><br/>
         {% endfor %}
         <br>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
-        <input type="submit" value="Vote">
+       <div>
+            <input type="submit" value="Vote" class="button">
+            <a href="/poll_results/{{ poll_id }}" class="button">See Results</a>
+        </div>
     </form>
 </body>
 </html>

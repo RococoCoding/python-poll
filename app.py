@@ -40,9 +40,8 @@ def create_poll():
 
 @app.route("/polls")
 def polls():
-    polls = database.get_polls(connection)
-    print(polls)
-    return render_template("polls.html", polls=polls)
+    returned_polls = database.get_polls(connection)
+    return render_template("polls.html", polls=returned_polls)
 
 
 @app.route("/vote/<int:poll_id>", methods=["GET", "POST"])
@@ -63,8 +62,7 @@ def poll_results(poll_id):
         poll_and_votes = database.get_poll_and_vote_results(connection, poll_id)
     except DivisionByZero:
         poll_and_votes = []
-
-    return render_template("poll_results.html", poll_id=poll_id, results=poll_and_votes)
+    return render_template("poll_results.html", poll_id=poll_id, poll_title=poll_and_votes[0][0], results=poll_and_votes)
 
 
 if __name__ == "__main__":
