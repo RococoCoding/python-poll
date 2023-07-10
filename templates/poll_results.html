@@ -33,12 +33,31 @@
         color: #007BFF;
         text-decoration: none;
     }
+
+    .bar-graph {
+        display: inline-block;
+        width: 200px;
+        height: 20px;
+        background-color: #EEE;
+        position: relative;
+        margin-bottom: 5px;
+    }
+
+    .bar-graph-fill {
+        display: block;
+        height: 100%;
+        background-color: #007BFF;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
 </style>
 
-    <title>Poll Results</title>
+    <title>Poll {{ poll_title }} Results</title>
 </head>
 <body>
-    <h1>Poll Results (ID: {{ poll_id }})</h1>
+    <h1>Poll {{ poll_title }} Results</h1>
     {% if results %}
         <table>
             <tr>
@@ -48,9 +67,17 @@
             </tr>
             {% for result in results %}
                 <tr>
-                    <td>{{ result[1] }}</td>
-                    <td>{{ result[2] }}</td>
-                    <td>{{ result[3] }}%</td>
+                    <td>
+                        {{ result[1] }}
+                    </td>
+                    <td>
+                        {{ result[2] }}
+                    </td>
+                    <td>
+                        <div class="bar-graph">
+                            <div class="bar-graph-fill" style="width: {{ result[3] }}%;"></div>
+                        </div>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
