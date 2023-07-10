@@ -45,7 +45,7 @@ def polls():
 
 
 @app.route("/vote/<int:poll_id>", methods=["GET", "POST"])
-def vote(poll_id):
+def vote(poll_id: int):
     if request.method == "POST":
         option_id = request.form.get("option_id")
         username = request.form.get("username")
@@ -57,12 +57,13 @@ def vote(poll_id):
 
 
 @app.route("/poll_results/<int:poll_id>")
-def poll_results(poll_id):
+def poll_results(poll_id: int):
     try:
-        poll_and_votes = database.get_poll_and_vote_results(connection, poll_id)
-    except DivisionByZero:
+        poll_and_votes = database.get_poll_and_vote_results(connection, poll_id) or []
+        poll_title = poll_title=poll_and_votes[0][0]
+    except (DivisionByZero, IndexError):
         poll_and_votes = []
-    return render_template("poll_results.html", poll_id=poll_id, poll_title=poll_and_votes[0][0], results=poll_and_votes)
+    return render_template("poll_results.html", poll_id=poll_id, poll_title=poll_title, results=poll_and_votes)
 
 
 if __name__ == "__main__":

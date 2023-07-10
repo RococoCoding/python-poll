@@ -1,4 +1,11 @@
+from typing import List, Tuple
+
 from psycopg2.extras import execute_values
+
+Poll = Tuple[int, str, str]
+Vote = Tuple[str, int]
+PollWithOption = Tuple[int, str, str, int, str, int]
+PollResults = Tuple[str, str, int, float]
 
 CREATE_POLLS = """CREATE TABLE IF NOT EXISTS polls
 (id SERIAL PRIMARY KEY, title TEXT, owner_username TEXT);"""
@@ -48,42 +55,42 @@ def create_tables(connection):
             # cursor.execute(CREATE_VIEW_POLL_RESULTS)
 
 
-def get_polls(connection):
+def get_polls(connection) -> List[Poll]:
     with connection:
         with connection.cursor() as cursor:
             cursor.execute(SELECT_ALL_POLLS)
             return cursor.fetchall()
 
 
-def get_latest_poll(connection):
+def get_latest_poll(connection) -> Poll:
     with connection:
         with connection.cursor() as cursor:
             cursor.execute(SELECT_LATEST_POLL)
             return cursor.fetchall()
 
 
-def get_poll_details(connection, poll_id):
+def get_poll_details(connection, poll_id: int) -> PollWithOption:
     with connection:
         with connection.cursor() as cursor:
             cursor.execute(SELECT_POLL_WITH_OPTIONS, (poll_id,))
             return cursor.fetchall()
 
 
-def get_poll_and_vote_results(connection, poll_id):
+def get_poll_and_vote_results(connection, poll_id: int) -> List[PollResults]:
     with connection:
         with connection.cursor() as cursor:
             cursor.execute(SELECT_POLL_WITH_RESULTS, (poll_id,))
             return cursor.fetchall()
 
 
-def get_random_poll_vote(connection, option_id):
+def get_random_poll_vote(connection, option_id: int) -> Vote:
     with connection:
         with connection.cursor() as cursor:
             cursor.execute(SELECT_RANDOM_VOTE, (option_id,))
             return cursor.fetchone()
 
 
-def create_poll(connection, title, owner, options):
+def create_poll(connection, title: str, owner: str, options: List[str]):
     with connection:
         with connection.cursor() as cursor:
             cursor.execute(INSERT_POLL_RETURN_ID, (title, owner))
@@ -93,8 +100,7 @@ def create_poll(connection, title, owner, options):
             execute_values(cursor, INSERT_OPTION, option_values)
 
 
-def add_poll_vote(connection, username, option_id):
+def add_poll_vote(connection, username: str, option_id: int):
     with connection:
         with connection.cursor() as cursor:
-            print(username, option_id)
             cursor.execute(INSERT_VOTE, (username, option_id))
