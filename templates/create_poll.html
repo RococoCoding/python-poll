@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    form {
+        display: inline-block;
+        text-align: left;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+        width: 300px;
+        padding: 5px;
+        margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+        background-color: #007BFF;
+        color: #FFF;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+
+    <title>Create Poll</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Create a New Poll</h1>
+        <form class="form" action="/create_poll" method="POST">
+            <label class="label" for="poll_title">Poll Title:</label>
+            <input class="input-text" type="text" id="poll_title" name="poll_title" required><br><br>
+
+            <label class="label" for="poll_owner">Poll Owner:</label>
+            <input class="input-text" type="text" id="poll_owner" name="poll_owner" required><br><br>
+
+            <div id="options-container">
+                <label class="label" for="option_1">Option 1</label>
+                <input id="option_1" class="input-text" type="text" name="option_1" required><br><br>
+            </div>
+            <button class="btn-secondary" type="button" onclick="addOption()">Add Option</button><br><br>
+
+            <input class="submit-btn" type="submit" value="Create Poll">
+        </form>
+    </div>
+
+    <script>
+        let optionCount = 1;
+
+        function addOption() {
+            console.log(optionCount)
+            optionCount++;
+            const optionsContainer = document.getElementById("options-container");
+            const optionDiv = document.createElement("div");
+            const optionLabel = document.createElement("label");
+            optionLabel.className = "option-label";
+            optionLabel.htmlFor = `option_${optionCount}`;
+            optionLabel.textContent = `Option ${optionCount}`;
+            optionDiv.appendChild(optionLabel);
+
+            const optionInput = document.createElement("input");
+            optionInput.className = "input-text";
+            optionInput.type = "text";
+            optionInput.id = `option_${optionCount}`;
+            optionInput.name = `option_${optionCount}`;
+            optionInput.required = true;
+            optionDiv.appendChild(optionInput);
+
+
+            optionsContainer.appendChild(optionDiv);
+            optionsContainer.appendChild(document.createElement("br"));
+        }
+    </script>
+</body>
+</html>

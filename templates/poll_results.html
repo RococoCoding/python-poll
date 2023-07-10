@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    table {
+        margin: 0 auto;
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid #CCC;
+    }
+
+    th, td {
+        padding: 5px 10px;
+    }
+
+    th {
+        background-color: #EEE;
+    }
+
+    a {
+        color: #007BFF;
+        text-decoration: none;
+    }
+</style>
+
+    <title>Poll Results</title>
+</head>
+<body>
+    <h1>Poll Results (ID: {{ poll_id }})</h1>
+    {% if results %}
+        <table>
+            <tr>
+                <th>Option</th>
+                <th>Votes</th>
+                <th>Percentage</th>
+            </tr>
+            {% for result in results %}
+                <tr>
+                    <td>{{ result[1] }}</td>
+                    <td>{{ result[2] }}</td>
+                    <td>{{ result[3] }}%</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No votes yet cast for this poll.</p>
+    {% endif %}
+    <br>
+    <a href="/polls">Back to Polls</a>
+</body>
+</html>
