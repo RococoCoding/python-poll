@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="489cddce-e91a-4319-b7f3-bc29dbeaddac" name="Changes" comment="updating workspace.xml">
+    <list default="true" id="489cddce-e91a-4319-b7f3-bc29dbeaddac" name="Changes" comment="Clean up so everything's working">
       <change beforePath="$PROJECT_DIR$/.idea/test2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/test2.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/poll_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/poll_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/vote.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/vote.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +35,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "local",
     "last_opened_file_path": "/Users/alicechang/PycharmProjects/pythonProject/test2",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
   }
 }]]></component>
   <component name="RunManager">
@@ -169,7 +166,15 @@
       <option name="project" value="LOCAL" />
       <updated>1688950625132</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Clean up so everything's working">
+      <option name="closed" value="true" />
+      <created>1689024103071</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1689024103071</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -196,6 +201,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Learning how to do git in pycharm" />
     <MESSAGE value="updating workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="updating workspace.xml" />
+    <MESSAGE value="Clean up so everything's working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up so everything's working" />
   </component>
 </project>
