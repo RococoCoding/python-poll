@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="489cddce-e91a-4319-b7f3-bc29dbeaddac" name="Changes" comment="Convert to model classes + add connection pooling">
+    <list default="true" id="489cddce-e91a-4319-b7f3-bc29dbeaddac" name="Changes" comment="disable submit when creating polls">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connection_pool.py" beforeDir="false" afterPath="$PROJECT_DIR$/connection_pool.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/option.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/option.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/poll.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/poll.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/create_poll.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/create_poll.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +189,23 @@
       <option name="project" value="LOCAL" />
       <updated>1689107070046</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="use custom context manager for pool">
+      <option name="closed" value="true" />
+      <created>1689110784511</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1689110784511</updated>
+    </task>
+    <task id="LOCAL-00009" summary="disable submit when creating polls">
+      <option name="closed" value="true" />
+      <created>1689110804120</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1689110804120</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -224,6 +236,8 @@
     <MESSAGE value="Clean up so everything's working" />
     <MESSAGE value="Add type hinting" />
     <MESSAGE value="Convert to model classes + add connection pooling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Convert to model classes + add connection pooling" />
+    <MESSAGE value="use custom context manager for pool" />
+    <MESSAGE value="disable submit when creating polls" />
+    <option name="LAST_COMMIT_MESSAGE" value="disable submit when creating polls" />
   </component>
 </project>
