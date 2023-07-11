@@ -1,5 +1,5 @@
 from typing import List
-from connection_pool import pool
+from connection_pool import get_connection
 from models.option import Option
 
 import database
@@ -18,35 +18,30 @@ class Poll:
         Option(option_text, self.id).save()
 
     def save(self):
-        connection = pool.getconn()
-        new_poll_id = database.create_poll(connection, self.title, self.owner)
-        pool.putconn(connection)
-        self.id = new_poll_id
+        with get_connection() as connection:
+            new_poll_id = database.create_poll(connection, self.title, self.owner)
+            self.id = new_poll_id
 
     @property
     def options(self) -> List[Option]:
-        connection = pool.getconn()
-        options = database.get_poll_options(connection, self.id)
-        pool.putconn(connection)
-        return [Option(option[1], option[2], option[0]) for option in options]
+        with get_connection() as connection:
+            options = database.get_poll_options(connection, self.id)
+            return [Option(option[1], option[2], option[0]) for option in options]
 
     @classmethod
     def get(cls, poll_id: int) -> "Poll":
-        connection = pool.getconn()
-        poll = database.get_poll(connection, poll_id)
-        pool.putconn(connection)
-        return cls(poll[1], poll[2], poll[0])
+        with get_connection() as connection:
+            poll = database.get_poll(connection, poll_id)
+            return cls(poll[1], poll[2], poll[0])
 
     @classmethod
     def all(cls) -> List["Poll"]:
-        connection = pool.getconn()
-        polls = database.get_polls(connection)
-        pool.putconn(connection)
-        return [cls(poll[1], poll[2], poll[0]) for poll in polls]
+        with get_connection() as connection:
+            polls = database.get_polls(connection)
+            return [cls(poll[1], poll[2], poll[0]) for poll in polls]
 
     @classmethod
     def latest(cls) -> "Poll":
-        connection = pool.getconn()
-        poll = database.get_latest_poll(connection)
-        pool.putconn(connection)
-        return cls(poll[1], poll[2], poll[0])
+        with get_connection() as connection:
+            poll = database.get_latest_poll(connection)
+            return cls(poll[1], poll[2], poll[0])
