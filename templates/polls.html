@@ -34,7 +34,7 @@
     <h1>Open Polls</h1>
     <ul>
         {% for poll in polls %}
-            <li><a href="/vote/{{ poll[0] }}">{{ poll[1] }}</a> (created by {{ poll[2] }})</li>
+            <li><a href="/vote/{{ poll.id }}">{{ poll.title }}</a> (created by {{ poll.owner }})</li>
         {% endfor %}
     </ul>
 </body>

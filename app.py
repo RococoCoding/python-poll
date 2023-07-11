@@ -4,6 +4,7 @@ import psycopg2
 from psycopg2.errors import DivisionByZero
 from dotenv import load_dotenv
 import database
+from models.poll import Poll
 
 app = Flask(__name__)
 
@@ -25,22 +26,24 @@ def create_poll():
     if request.method == "POST":
         poll_title = request.form.get("poll_title")
         poll_owner = request.form.get("poll_owner")
-        options = []
+        poll = Poll(poll_title, poll_owner)
+        poll.save()
+
         option_keys = [key for key in request.form if key.startswith("option_")]
 
         for key in option_keys:
             option = request.form.get(key)
             if option:
-                options.append(option)
+                poll.add_option(option)
 
-        database.create_poll(connection, poll_title, poll_owner, options)
         return redirect("/polls")
     return render_template("create_poll.html")
 
 
 @app.route("/polls")
 def polls():
-    returned_polls = database.get_polls(connection)
+    returned_polls = Poll.all()
+    print(returned_polls)
     return render_template("polls.html", polls=returned_polls)
 
 
@@ -52,7 +55,7 @@ def vote(poll_id: int):
         database.add_poll_vote(connection, username, option_id)
         return redirect("/polls")
 
-    poll_options = database.get_poll_details(connection, poll_id)
+    poll_options = Poll.get(poll_id).options
     return render_template("vote.html", poll_id=poll_id, options=poll_options)
 
 
